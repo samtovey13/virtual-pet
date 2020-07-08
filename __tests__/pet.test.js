@@ -48,3 +48,16 @@ describe('walk', () => {
         expect(pet.fitness).toBe(10);
     });
 });
+
+describe('feed', () => {
+    it('reduces hunger by 3', () => {
+        pet.hunger = 5;
+        pet.feed();
+        expect(pet.hunger).toBe(2);
+    })
+    it('hunger level never falls below 0', () => {
+        pet.hunger = 1;
+        pet.feed();
+        expect(pet.hunger).toBe(0);
+    });
+})

@@ -6,6 +6,7 @@ function Pet(name) {
 };
 
 const maxFitness = 10;
+const minHunger = 0;
 
 Pet.prototype = {
     growUp: function() {
@@ -17,6 +18,12 @@ Pet.prototype = {
         this.fitness += 4;
         if (this.fitness > maxFitness) {
             this.fitness = maxFitness;
+        }
+    },
+    feed: function() {
+        this.hunger -= 3;
+        if (this.hunger < minHunger) {
+            this.hunger = minHunger;
         }
     }
 };
