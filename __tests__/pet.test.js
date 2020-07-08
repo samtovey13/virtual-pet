@@ -84,3 +84,21 @@ describe('checkUp', () => {
         expect(pet.checkUp()).toBe('I feel great!');
     });
 });
+
+describe('isAlive', () => {
+    it('returns false if fitness is 0 or less', () => {
+        pet.fitness = 0;
+        expect(pet.isAlive()).toBe(false);
+    });
+    it('returns false if hunger is 10 or more', () => {
+        pet.hunger = 10;
+        expect(pet.isAlive()).toBe(false);
+    });
+    it('returns false if age is 30 or more', () => {
+        pet.age = 30;
+        expect(pet.isAlive()).toBe(false);
+    });
+    it('returns true if pet is still alive', () => {
+        expect(pet.isAlive()).toBe(true);
+    });
+});

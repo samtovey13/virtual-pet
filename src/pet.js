@@ -5,8 +5,11 @@ function Pet(name) {
     this.fitness = 10;
 };
 
+const minFitness = 0;
 const maxFitness = 10;
 const minHunger = 0;
+const maxHunger = 10;
+const maxAge = 30;
 const hungryAlert = 'I am hungry';
 const fitnessAlert = 'I need a walk';
 const feelGreatAlert = 'I feel great!';
@@ -40,6 +43,14 @@ Pet.prototype = {
             return fitnessAlert;
         }
         return feelGreatAlert;
+    },
+    isAlive: function() {
+        if (this.fitness <= minFitness || this.hunger >= maxHunger || this.age >= maxAge ) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 };
 
