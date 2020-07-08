@@ -60,4 +60,27 @@ describe('feed', () => {
         pet.feed();
         expect(pet.hunger).toBe(0);
     });
-})
+});
+
+describe('checkUp', () => {
+    it('tells you it needs a walk when fitness is 3 or less', () => {
+        pet.fitness = 2;
+        pet.hunger = 2;
+        expect(pet.checkUp()).toBe('I need a walk');
+    });
+    it ('tells you it is hungry if hunger is 5 or more', () => {
+        pet.fitness = 10;
+        pet.hunger = 8;
+        expect(pet.checkUp()).toBe('I am hungry');
+    });
+    it ('returns a combined message if it is both hungry and needs a walk', () => {
+        pet.fitness = 3;
+        pet.hunger = 5;
+        expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+    });
+    it('tells you it feels great otherwise', () => {
+        pet.fitness = 10;
+        pet.hunger = 0;
+        expect(pet.checkUp()).toBe('I feel great!');
+    });
+});

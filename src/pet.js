@@ -7,6 +7,9 @@ function Pet(name) {
 
 const maxFitness = 10;
 const minHunger = 0;
+const hungryAlert = 'I am hungry';
+const fitnessAlert = 'I need a walk';
+const feelGreatAlert = 'I feel great!';
 
 Pet.prototype = {
     growUp: function() {
@@ -25,6 +28,18 @@ Pet.prototype = {
         if (this.hunger < minHunger) {
             this.hunger = minHunger;
         }
+    },
+    checkUp: function() {
+        if (this.hunger >= 5 && this.fitness <= 3) {
+            return hungryAlert + ' AND ' + fitnessAlert;
+        }
+        if (this.hunger >= 5) {
+            return hungryAlert;
+        }
+        if (this.fitness <= 3) {
+            return fitnessAlert;
+        }
+        return feelGreatAlert;
     }
 };
 
