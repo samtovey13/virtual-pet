@@ -5,6 +5,8 @@ function Pet(name) {
     this.fitness = 10;
 };
 
+const maxFitness = 10;
+
 Pet.prototype = {
     growUp: function() {
         this.age += 1;
@@ -13,7 +15,6 @@ Pet.prototype = {
     },
     walk: function() {
         this.fitness += 4;
-        const maxFitness = 10;
         if (this.fitness > maxFitness) {
             this.fitness = maxFitness;
         }
