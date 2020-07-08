@@ -1,14 +1,16 @@
 function Pet(name) {
     this.name = name;
-    this.age = 0;
-    this.hunger = 0;
-    this.fitness = 10;
+    this.age = minAge;
+    this.hunger = minHunger;
+    this.fitness = maxFitness;
+    this.children = [];
 };
 
 const minFitness = 0;
 const maxFitness = 10;
 const minHunger = 0;
 const maxHunger = 10;
+const minAge = 0;
 const maxAge = 30;
 const hungryAlert = 'I am hungry';
 const fitnessAlert = 'I need a walk';
@@ -17,7 +19,7 @@ const deathMessage = 'Your pet is no longer alive :('
 
 Pet.prototype = {
     get isAlive() {
-        return this.fitness > 0 && this.hunger < 10 && this.age < 30;
+        return this.fitness > minFitness && this.hunger < maxHunger && this.age < maxAge;
     }
 };
 
@@ -64,6 +66,10 @@ Pet.prototype.checkUp = function() {
         return fitnessAlert;
     }
     return feelGreatAlert;
+};
+
+Pet.prototype.haveBaby = function (babyName) {
+    this.children.push(new Pet(babyName));
 };
 
 module.exports = Pet;

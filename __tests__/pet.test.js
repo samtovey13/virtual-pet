@@ -100,3 +100,26 @@ describe('get isAlive', () => {
         expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
     });
 });
+
+describe ('haveBaby', () => {
+    it('creates a new child and stores it in an array under "children" property', () => {
+        pet.haveBaby('babyJohn');
+        expect(pet.children[0].name).toBe('babyJohn');
+        pet.haveBaby('babyAmelia');
+        expect(pet.children[0].name).toBe('babyJohn');
+        expect(pet.children[1].name).toBe('babyAmelia');
+    });
+    it('creates a nested Pet within a Pet with all the same object functionality', () => {
+        pet.haveBaby('babyJohn');
+        let babyJohn = pet.children[0];
+        expect(babyJohn).toBeInstanceOf(Object);
+        expect(babyJohn.age).toBe(0);
+
+        let searchName = 'babyJohn';
+        pet.children.find(child => child.name === searchName).growUp();
+        expect(babyJohn.age).toBe(1);
+
+        babyJohn.age = 30;
+        expect(() => babyJohn.checkUp()).toThrow('Your pet is no longer alive :(')
+    });
+});
