@@ -37,7 +37,7 @@ Once in node you will need to allow it access to the Javascript inside of the pe
 <code>pet.checkUp()</code> - ask your pet how it's feeling. <br>
 <code>pet.haveBaby('CHOOSE-A-BABY-NAME')</code> - your pet will have a baby. Now you have two mouths to feed so be careful to keep checking in with both!<br>
 <code>pet.children</code> - you can view a list of all your pet's children and their properties here. To perform an action on one of your pet's children you can reference them by their place in the array, e.g. <code>pet.children[0].feed()</code> would feed your firstborn.<p>
-<p><em><strong>WARNING!<strong><br>
+<p><em><strong>WARNING!</strong><br>
 ...If your pet's hunger hits level 10, it will starve to death!<br>
 ......If its fitness level drops to 0, it will die of unhealthiness!</em><p>
 
