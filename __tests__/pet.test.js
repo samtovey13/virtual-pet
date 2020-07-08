@@ -32,3 +32,19 @@ describe ('growUp', () => {
         expect(pet.fitness).toBe(7);
     });
 });
+
+describe('walk', () => {
+    it('increases fitness level by 4', () => {
+        pet.growUp();
+        pet.growUp();
+        expect(pet.fitness).toBe(4);
+        pet.walk();
+        expect(pet.fitness).toBe(8);
+    });
+    it('fitness level is capped at 10', () => {
+        pet.growUp();
+        expect(pet.fitness).toBe(7)
+        pet.walk();
+        expect(pet.fitness).toBe(10);
+    });
+});

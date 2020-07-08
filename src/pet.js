@@ -10,6 +10,13 @@ Pet.prototype = {
         this.age += 1;
         this.hunger += 5;
         this.fitness -= 3;
+    },
+    walk: function() {
+        this.fitness += 4;
+        const maxFitness = 10;
+        if (this.fitness > maxFitness) {
+            this.fitness = maxFitness;
+        }
     }
 };
 
