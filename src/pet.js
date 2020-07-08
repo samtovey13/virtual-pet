@@ -13,45 +13,57 @@ const maxAge = 30;
 const hungryAlert = 'I am hungry';
 const fitnessAlert = 'I need a walk';
 const feelGreatAlert = 'I feel great!';
+const deathMessage = 'Your pet is no longer alive :('
 
 Pet.prototype = {
-    growUp: function() {
-        this.age += 1;
-        this.hunger += 5;
-        this.fitness -= 3;
-    },
-    walk: function() {
-        this.fitness += 4;
-        if (this.fitness > maxFitness) {
-            this.fitness = maxFitness;
-        }
-    },
-    feed: function() {
-        this.hunger -= 3;
-        if (this.hunger < minHunger) {
-            this.hunger = minHunger;
-        }
-    },
-    checkUp: function() {
-        if (this.hunger >= 5 && this.fitness <= 3) {
-            return hungryAlert + ' AND ' + fitnessAlert;
-        }
-        if (this.hunger >= 5) {
-            return hungryAlert;
-        }
-        if (this.fitness <= 3) {
-            return fitnessAlert;
-        }
-        return feelGreatAlert;
-    },
-    isAlive: function() {
-        if (this.fitness <= minFitness || this.hunger >= maxHunger || this.age >= maxAge ) {
-            return false;
-        }
-        else {
-            return true;
-        }
+    get isAlive() {
+        return this.fitness > 0 && this.hunger < 10 && this.age < 30;
     }
+};
+
+Pet.prototype.growUp = function() {
+    if(!this.isAlive) {
+        throw new Error(deathMessage);
+    };
+    this.age += 1;
+    this.hunger += 5;
+    this.fitness -= 3;
+};
+
+Pet.prototype.walk = function() {
+    if(!this.isAlive) {
+        throw new Error(deathMessage);
+    };
+    this.fitness += 4;
+    if (this.fitness > maxFitness) {
+        this.fitness = maxFitness;
+    }
+};
+
+Pet.prototype.feed = function() {
+    if(!this.isAlive) {
+        throw new Error(deathMessage);
+    }
+    this.hunger -= 3;
+    if (this.hunger < minHunger) {
+        this.hunger = minHunger;
+    }
+};
+
+Pet.prototype.checkUp = function() {
+    if (!this.isAlive) {
+        throw new Error(deathMessage);
+    }
+    if (this.hunger >= 5 && this.fitness <= 3) {
+        return hungryAlert + ' AND ' + fitnessAlert;
+    }
+    if (this.hunger >= 5) {
+        return hungryAlert;
+    }
+    if (this.fitness <= 3) {
+        return fitnessAlert;
+    }
+    return feelGreatAlert;
 };
 
 module.exports = Pet;

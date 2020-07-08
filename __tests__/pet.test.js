@@ -35,15 +35,12 @@ describe ('growUp', () => {
 
 describe('walk', () => {
     it('increases fitness level by 4', () => {
-        pet.growUp();
-        pet.growUp();
-        expect(pet.fitness).toBe(4);
+        pet.fitness = 1;
         pet.walk();
-        expect(pet.fitness).toBe(8);
+        expect(pet.fitness).toBe(5);
     });
     it('fitness level is capped at 10', () => {
-        pet.growUp();
-        expect(pet.fitness).toBe(7)
+        pet.fitness = 9;
         pet.walk();
         expect(pet.fitness).toBe(10);
     });
@@ -85,20 +82,21 @@ describe('checkUp', () => {
     });
 });
 
-describe('isAlive', () => {
-    it('returns false if fitness is 0 or less', () => {
+describe('get isAlive', () => {
+    it ('checks if pet is alive before walking', () => {
         pet.fitness = 0;
-        expect(pet.isAlive()).toBe(false);
+        expect(() => pet.walk()).toThrow('Your pet is no longer alive :(');
     });
-    it('returns false if hunger is 10 or more', () => {
+    it('checks if pet is alive before feeding', () => {
         pet.hunger = 10;
-        expect(pet.isAlive()).toBe(false);
+        expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
     });
-    it('returns false if age is 30 or more', () => {
+    it('checks if pet is alive before growing up', () => {
         pet.age = 30;
-        expect(pet.isAlive()).toBe(false);
+        expect(() => pet.growUp()).toThrow('Your pet is no longer alive :(');
     });
-    it('returns true if pet is still alive', () => {
-        expect(pet.isAlive()).toBe(true);
+    it('checks if pet is alive before checkUp', () => {
+        pet.hunger = 10;
+        expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
     });
 });
